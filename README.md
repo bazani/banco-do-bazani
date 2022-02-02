@@ -5,15 +5,47 @@ API que simula algumas operações de um banco digital. Utilizada para estudos d
 
 # ENDPOINTS
 
-## POST /login
+## POST /auth/login
 
-Realiza o login do usuario no sistema. A resposta é o token JWT que será utilizado nos demais endpoints para validar a permissao do usuario.
+Realiza o login do usuario no sistema. A resposta é o token JWT que será utilizado nos demais endpoints para validar a permissao do usuario.  
+O token expira a cada 2 minutos (120 segundos) e sera necessario obter um novo token no endpoint do refresh token.
+Requisicao:  
 ```
 {
   "usuario": "cfo@minhaempresa.com",
   "senha": "senhaSuperSecreta"
 }
 ```
+
+Resposta:  
+`
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "refreshToken: "eyJhbGciOiJFUzM4NCIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.VUPWQZuClnkFbaEKCsPy7CZVMh5wxbCSpaAWFLpnTe9J0--PzHNeTFNXCrVHysAa3eFbuzD8_bLSsgTKC8SzHxRVSj5eN86vBPo_1fNfE7SHTYhWowjY4E_wuiC13yoj",
+  "validade": 120
+}
+`
+
+---
+
+## POST /auth/refresh-token
+
+Obtem um novo token utilizando o refresh token fornecido durante o login.
+
+Requisicao:  
+```
+{
+  "refreshToken": ""eyJhbGciOiJFUzM4NCIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.VUPWQZuClnkFbaEKCsPy7CZVMh5wxbCSpaAWFLpnTe9J0--PzHNeTFNXCrVHysAa3eFbuzD8_bLSsgTKC8SzHxRVSj5eN86vBPo_1fNfE7SHTYhWowjY4E_wuiC13yoj"
+}
+```
+
+Resposta:  
+`
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "validade": 120
+}
+`
 
 ---
 
