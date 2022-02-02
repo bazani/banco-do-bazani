@@ -30,6 +30,8 @@ Retorna a lista de contas pertencentes ao usuario logado.
 ]
 ```
 
+---
+
 ## GET /dados-conta/$id_conta
 
 Retorna os dados da conta corrente especifica
@@ -109,7 +111,7 @@ Retorna o extrato da conta especificada, para o periodo informado utilizando os 
 
 ## POST /pix/$id_conta/transferencia
 
-**ENDPOINT RESTRITO - apenas o CFO tem acesso**
+**ENDPOINT RESTRITO - apenas o CFO tem acesso**  
 Realiza uma transferia (debito no extrato) via pix, para a chave de destino, utilizando os dados passados no body da requisicao.
 ```
 {
@@ -122,7 +124,7 @@ Realiza uma transferia (debito no extrato) via pix, para a chave de destino, uti
 
 ## POST /pix/$id_conta/cobranca
 
-**ENDPOINT RESTRITO - apenas o CFO tem acesso**
+**ENDPOINT RESTRITO - apenas o CFO tem acesso**  
 Realiza uma cobranca (credito no extrato) via pix, para a conta selecionada, utilizando os dados passados no body da requisicao.
 ```
 {
