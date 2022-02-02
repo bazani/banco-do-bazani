@@ -43,7 +43,7 @@ Retorna uma lista com os tipos de lancamentos que podem aparecer no extrato. Ex:
 ]
 ```
 
-## GET /dados-conta/$id_conta/extrato?dataInicial:2022-01-01&dataFinal:2022-01-31
+## GET /dados-conta/$id_conta/extrato?dataInicial=2022-01-01&dataFinal=2022-01-31
 Retorna o extrato da conta especificada, para o periodo informado utilizando os query parameters dataInicial e dataFinal.
 ```
 {
@@ -81,7 +81,7 @@ Retorna o extrato da conta especificada, para o periodo informado utilizando os 
 }
 ```
 
-## POST /pix/$id-conta/transferencia
+## POST /pix/$id_conta/transferencia
 Realiza uma transferia (debito no extrato) via pix, para a chave de destino, utilizando os dados passados no body da requisicao.
 ```
 {
@@ -90,7 +90,7 @@ Realiza uma transferia (debito no extrato) via pix, para a chave de destino, uti
 }
 ```
 
-## POST /pix/$id-conta/cobranca
+## POST /pix/$id_conta/cobranca
 Realiza uma cobranca (credito no extrato) via pix, para a conta selecionada, utilizando os dados passados no body da requisicao.
 ```
 {
