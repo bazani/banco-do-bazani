@@ -1,8 +1,24 @@
 # Banco do Bazani
 API que simula algumas operações de um banco digital. Utilizada para estudos de integração com um front-end.
 
+---
+
 # ENDPOINTS
+
+## POST /login
+
+Realiza o login do usuario no sistema. A resposta é o token JWT que será utilizado nos demais endpoints para validar a permissao do usuario.
+```
+{
+  "usuario": "cfo@minhaempresa.com",
+  "senha": "senhaSuperSecreta"
+}
+```
+
+---
+
 ## GET /listar-contas
+
 Retorna a lista de contas pertencentes ao usuario logado.
 ```
 [
@@ -15,6 +31,7 @@ Retorna a lista de contas pertencentes ao usuario logado.
 ```
 
 ## GET /dados-conta/$id_conta
+
 Retorna os dados da conta corrente especifica
 ```
 [
@@ -24,7 +41,11 @@ Retorna os dados da conta corrente especifica
   }
 ]
 ```
+
+---
+
 ## GET /tipos-lancamentos
+
 Retorna uma lista com os tipos de lancamentos que podem aparecer no extrato. Ex:
 ```
 [
@@ -43,7 +64,10 @@ Retorna uma lista com os tipos de lancamentos que podem aparecer no extrato. Ex:
 ]
 ```
 
+---
+
 ## GET /dados-conta/$id_conta/extrato?dataInicial=2022-01-01&dataFinal=2022-01-31
+
 Retorna o extrato da conta especificada, para o periodo informado utilizando os query parameters dataInicial e dataFinal.
 ```
 {
@@ -81,7 +105,11 @@ Retorna o extrato da conta especificada, para o periodo informado utilizando os 
 }
 ```
 
+---
+
 ## POST /pix/$id_conta/transferencia
+
+**ENDPOINT RESTRITO - apenas o CFO tem acesso**
 Realiza uma transferia (debito no extrato) via pix, para a chave de destino, utilizando os dados passados no body da requisicao.
 ```
 {
@@ -90,7 +118,11 @@ Realiza uma transferia (debito no extrato) via pix, para a chave de destino, uti
 }
 ```
 
+---
+
 ## POST /pix/$id_conta/cobranca
+
+**ENDPOINT RESTRITO - apenas o CFO tem acesso**
 Realiza uma cobranca (credito no extrato) via pix, para a conta selecionada, utilizando os dados passados no body da requisicao.
 ```
 {
