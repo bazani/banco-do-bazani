@@ -22,4 +22,3 @@ export default class ListarContasController {
     res.json({ contas: this.contas });
   }
 }
-

@@ -32,4 +32,3 @@ const methodDecoratorFactory = (method: Methods) => {
 
 export const Get = methodDecoratorFactory(Methods.GET);
 export const Post = methodDecoratorFactory(Methods.POST);
-
