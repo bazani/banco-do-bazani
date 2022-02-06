@@ -1,7 +1,7 @@
-import 'reflect-metadata';
-
-import app from './application';
 import * as http from 'http';
+import 'reflect-metadata';
+import app from './application';
+
 
 const PORT = 1337;
 

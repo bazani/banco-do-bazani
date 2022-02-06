@@ -1,7 +1,9 @@
-import ListarContasController from './listar-contas.controller';
 import AuthController from './auth.controller';
+import DadosContasController from './dados-contas.controller';
+import ListarContasController from './listar-contas.controller';
 
 export const controllers = [
-  ListarContasController,
   AuthController,
+  DadosContasController,
+  ListarContasController,
 ];
