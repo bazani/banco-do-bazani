@@ -1,4 +1,5 @@
 import express, { Application as ExApplication, Handler } from 'express';
+import cors from 'cors';
 import { controllers } from './controllers';
 import { MetadataKeys } from './utils/metadata.keys';
 import { IRouter } from './utils/decorators/handlers.decorator';
@@ -13,6 +14,7 @@ class Application {
   constructor() {
     this.instance$ = express();
     this.instance$.use(express.json());
+    this.instance$.use(cors());
     this.registerRouters();
   }
 
