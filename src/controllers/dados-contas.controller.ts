@@ -7,6 +7,16 @@ export interface IDadoConta {
     limite: number;
 }
 
+export interface ILanctoExtrato {
+    id: number;
+    data: string;
+    tipoLancto: string;
+    codigoTipoOperacao: number;
+    descricao: string;
+    valor: number;
+    saldo: number;
+}
+
 @Controller('/dados-conta')
 export default class DadosContasController {
     private dadoConta1: IDadoConta = {
@@ -23,6 +33,18 @@ export default class DadosContasController {
         saldoAtual: 700.00,
         limite: 85514.00
     };
+
+    private extratoConta1: ILanctoExtrato[] = [
+        {
+            id: 10,
+            data: "2022-01-01",
+            tipoLancto: "D",
+            codigoTipoOperacao: 10,
+            descricao: "",
+            valor: 120.15,
+            saldo: 20391.22
+        },
+    ];
 
     @Get('/:contaId')
     public getDadoConta(req: Request, res: Response): void {
@@ -52,6 +74,37 @@ export default class DadosContasController {
         } else {
             res.status(404).json(resposta);
         }
+    }
+
+    @Get('/:contaId/extrato')
+    public getExtrato(req: Request, res: Response): void {
+        if (!req.query.dataInicial) {
+            res.status(400).json({mensagem: 'Parametro dataInicial não encontrado!'});
+            return;
+        }
+
+        if (!req.query.dataFinal) {
+            res.status(400).json({mensagem: 'Parametro dataFinal não encontrado!'});
+            return;
+        }
+
+        const dataIni = req.query.dataInicial;
+        const dataFim = req.query.dataFinal;
+
+        //res.json(this.extratoConta1);
+        res.send(this.extratoConta1.toString());
+    }
+
+    public doCredito(contaId: string, valor: number): boolean {
+        let resposta = false;
+
+        return resposta;
+    }
+
+    public doDebito(contaId: string, valor: number): boolean {
+        let resposta = false;
+
+        return resposta;
     }
 }
 

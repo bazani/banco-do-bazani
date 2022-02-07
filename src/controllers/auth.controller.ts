@@ -93,7 +93,7 @@ export default class AuthController {
     resp.status(201);
   }
 
-  @Post('refresh-token')
+  @Post('/refresh-token')
   public async refreshToken(req: Request, resp: Response) {
 
     if (req.body.refreshToken) {
