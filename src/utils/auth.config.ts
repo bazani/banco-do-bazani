@@ -1,4 +1,4 @@
 export default {
   secret: "chave-secreta-do-banco",
-  timeToExpire: 120
+  timeToExpire: 3600
 }

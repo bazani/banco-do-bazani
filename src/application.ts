@@ -35,8 +35,8 @@ class Application {
         exRouter[method](path, controllerInstance[String(handlerName)].bind(controllerInstance));
 
 	      info.push({
-	        api: `${method.toLocaleUpperCase()} ${basePath + path}`,
-      	  handler: `${controllerClass.name}.${String(handlerName)}`,
+	          api: `${method.toLocaleUpperCase()} ${basePath + path}`,
+          	  handler: `${controllerClass.name}.${String(handlerName)}`,
 	      });
       }); 
 

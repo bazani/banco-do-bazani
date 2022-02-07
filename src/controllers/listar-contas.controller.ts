@@ -19,6 +19,12 @@ export default class ListarContasController {
 
   @Get('')
   public index(req: Request, res: Response): void {
-    res.json({ contas: this.contas });
+      const authHeader = req.headers.authorization;
+      if (!authHeader) {
+        res.status(401).json({mensagem: 'Falta o token para autenticacao'});
+        return;
+      }
+      
+      res.json({ contas: this.contas });
   }
 }

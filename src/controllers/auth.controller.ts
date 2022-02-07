@@ -114,6 +114,11 @@ export default class AuthController {
     return this.tokensRef.length > 0;
   }
 
+  public getDadosToken(token: string): any {
+    const userData = jwt.verify(token, config.secret);
+    return userData;
+  }
+
   private async createToken(usuario: IUser): Promise<IToken> {
     const jwtToken = jwt.sign(usuario, config.secret, {
       expiresIn: config.timeToExpire
