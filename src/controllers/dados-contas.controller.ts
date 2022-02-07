@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Controller from "../utils/decorators/controller.decorator";
 import { Get } from "../utils/decorators/handlers.decorator";
 import db from "../db/db";
+import { format } from "date-fns";
 
 export interface IDadoConta {
   saldoAtual: number;
@@ -16,6 +17,12 @@ export interface ILanctoExtrato {
   descricao: string;
   valor: number;
   saldo: number;
+}
+
+export interface IExtrato {
+  saldoAnterior: number;
+  saldoFinal: number;
+  movimentos: ILanctoExtrato[];
 }
 
 @Controller("/dados-conta")
@@ -105,21 +112,46 @@ export default class DadosContasController {
         
     }
 
+    const resposta: IExtrato = {
+        saldoAnterior: 0,
+        saldoFinal: 0,
+        movimentos: []
+    }
+
     db.getExtrato(contaId, dataIni.toString(), dataFim.toString())
         .then(extrato => {
-            res.json(extrato);
+            resposta.movimentos = extrato;
+            res.json(resposta);
         });
 
   }
 
-  public doCredito(contaId: string, valor: number): boolean {
+  public async doCredito(contaId: string, descricao: string, valor: number): Promise<boolean> {
     let resposta = false;
+    const hoje = format(new Date(), 'yyyy-MM-dd');
+
+    db.createLancamento(contaId, hoje, 'C', 15, descricao, valor)
+        .then(() => {
+            resposta = true;
+        })
+        .catch((err: any) => {
+          console.error('Erro ao inserir lancamento', err);
+        });
 
     return resposta;
   }
 
-  public doDebito(contaId: string, valor: number): boolean {
+  public async doDebito(contaId: string, descricao: string, valor: number): Promise<boolean> {
     let resposta = false;
+    const hoje = format(new Date(), 'yyyy-MM-dd');
+
+    db.createLancamento(contaId, hoje, 'D', 120, descricao, valor)
+        .then(() => {
+            resposta = true;
+        })
+        .catch((err: any) => {
+          console.error('Erro ao inserir lancamento', err);
+        });
 
     return resposta;
   }

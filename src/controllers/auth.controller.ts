@@ -23,8 +23,6 @@ export interface ITokenRef {
 
 interface IAuth extends IUser, IToken {}
 
-// TODO: atualizar README.md com os novos payloads de resposta
-
 @Controller('/auth')
 export default class AuthController {
   private tokensRef: ITokenRef[] = [];
