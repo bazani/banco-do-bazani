@@ -4,7 +4,7 @@ import app from './application';
 import mainDb from './db/db';
 
 
-const PORT = 1337;
+const PORT = 1337 || 3000;
 
 const server = http.createServer(app.instance);
 
