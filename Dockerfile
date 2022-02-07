@@ -3,6 +3,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 1337
+EXPOSE 3000
 CMD ["npm", "run", "dev"]
 
